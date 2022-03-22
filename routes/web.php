@@ -32,9 +32,9 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth','prefix' => 'admin']
 
 	//Route Rescource
 	Route::resource('/user','UserController')->middleware(['can:admin']);
+	Route::resource('/teacher','TeacherController')->middleware(['can:admin']);
 
 	//Route View
-	
 	Route::view('/404-page','admin.404-page')->name('404-page');
 	Route::view('/blank-page','admin.blank-page')->name('blank-page');
 	Route::view('/buttons','admin.buttons')->name('buttons');

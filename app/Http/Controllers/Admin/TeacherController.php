@@ -12,12 +12,12 @@ use App\Models\User;
 use App\Models\Role;
 
 
-class UserController extends Controller
+class TeacherController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::select('*')->where('roles', Role::$STUDENT)->orderBy('created_at','DESC');
+            $data = User::select('*')->where('roles', Role::$TEACHER)->orderBy('created_at','DESC');
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -30,7 +30,7 @@ class UserController extends Controller
                     ->make(true);
         }
         
-        return view('admin.user.index');
+        return view('admin.teacher.index');
     }
 
     public function create()

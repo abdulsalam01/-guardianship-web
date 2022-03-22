@@ -1,6 +1,6 @@
 @extends('layout.backend.app',[
-    'title' => 'Manage Student',
-    'pageTitle' =>'Manage User',
+    'title' => 'Manage Teacher',
+    'pageTitle' =>'Manage Teacher',
 ])
 
 @push('css')
@@ -152,7 +152,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('user.index') }}",
+        ajax: "{{ route('teacher.index') }}",
         columns: [
             {data: 'DT_RowIndex' , name: 'id'},
             {data: 'name', name: 'name'},
@@ -178,7 +178,7 @@
         e.preventDefault()
 
         $.ajax({
-            url: "/admin/user",
+            url: "/admin/teacher",
             method: "POST",
             data: $(this).serialize(),
             success:function(){
@@ -196,7 +196,7 @@
     $('body').on("click",".btn-edit",function(){
         var id = $(this).attr("id")
         $.ajax({
-            url: "/admin/user/"+id+"/edit",
+            url: "/admin/teacher/"+id+"/edit",
             method: "GET",
             success:function(response){
                 $("#edit-modal").modal("show")
@@ -213,7 +213,7 @@
         var id = $("#id").val()
 
         $.ajax({
-            url: "/admin/user/"+id,
+            url: "/admin/teacher/"+id,
             method: "PATCH",
             data: $(this).serialize(),
             success:function(){
@@ -235,7 +235,7 @@
         var id = $(this).attr("id")
 
         $.ajax({
-            url: "/admin/user/"+id,
+            url: "/admin/teacher/"+id,
             method: "DELETE",
             success:function(){
                 $("#destroy-modal").modal("hide")
