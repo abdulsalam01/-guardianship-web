@@ -9,7 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ $title ?? 'Auth' }}</title>
+    <title>K-PERWALIAN | {{ $title ?? 'Auth' }}</title>
+
+    <link href="{{ asset('images/logo-stmik.png') }}" rel="icon">
+    <link href="{{ asset('images/logo-stmik.png') }}" rel="apple-touch-icon">
+    <link rel="icon" href="data:,">
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/backend/sb-admin-2') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

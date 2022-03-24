@@ -18,7 +18,7 @@
         </button>
     </div>
         <div class="card-body">
-            <div class="table-responsive">    
+            <div class="table-responsive">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
@@ -148,7 +148,7 @@
 <script type="text/javascript">
 
   $(function () {
-    
+
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
@@ -172,7 +172,7 @@
         }
     //
 
-    // Create 
+    // Create
 
     $("#createForm").on("submit",function(e){
         e.preventDefault()

@@ -17,42 +17,47 @@ class TeacherController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::select('*')->where('roles', Role::$TEACHER)->orderBy('created_at','DESC');
+            $data = User::select('*')->where('roles', Role::$TEACHER)->orderBy('created_at', 'DESC');
             return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                           $btn = '<div class="row"><a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-primary btn-sm ml-2 btn-edit">Edit</a>';
-                           $btn .= '<a href="javascript:void(0)" id="'.$row->id.'" class="btn btn-danger btn-sm ml-2 btn-delete">Delete</a></div>';
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<div class="row"><a href="javascript:void(0)" id="' . $row->id . '" class="btn btn-primary btn-sm ml-2 btn-edit">Edit</a>';
+                    $btn .= '<a href="javascript:void(0)" id="' . $row->id . '" class="btn btn-danger btn-sm ml-2 btn-delete">Delete</a></div>';
 
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-        
+
         return view('admin.teacher.index');
     }
 
     public function create()
     {
-        
     }
 
     public function store(Request $request)
-    {   
+    {
         $request->request->add(['password' => Hash::make($request->password)]);
         User::create($request->all());
     }
 
     public function show($id)
     {
-        
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
-        return response()->json($user);
+        $data = User::findOrFail($id);
+
+        return response()->json($data);
     }
+
+    // public function edit(User $user)
+    // {
+    //     return response()->json($user);
+    // }
 
     public function update(Request $request, User $user)
     {
