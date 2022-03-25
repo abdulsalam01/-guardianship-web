@@ -178,14 +178,12 @@
         $('body').on("click", ".btn-edit", function() {
             var id = $(this).attr("id")
             $.ajax({
-                url: "/admin/teacher/" + id + "/edit",
+                url: "/admin/jurusan/" + id + "/edit",
                 method: "GET",
                 success: function(response) {
                     $("#edit-modal").modal("show")
                     $("#id").val(response.id)
-                    $("#name").val(response.name)
-                    $("#email").val(response.email)
-                    $("#role").val(response.roles)
+                    $("#title_updt").val(response.title)
                 }
             })
         });
@@ -195,13 +193,16 @@
             var id = $("#id").val()
 
             $.ajax({
-                url: "/admin/teacher/" + id,
+                url: "/admin/jurusan/" + id,
                 method: "PATCH",
                 data: $(this).serialize(),
                 success: function() {
                     $('.data-table').DataTable().ajax.reload();
                     $("#edit-modal").modal("hide")
                     flash("success", "Data berhasil diupdate")
+                },
+                error: function(data) {
+                    console.log('Error:', data);
                 }
             })
         })
@@ -217,7 +218,7 @@
             var id = $(this).attr("id")
 
             $.ajax({
-                url: "/admin/teacher/" + id,
+                url: "/admin/jurusan/" + id,
                 method: "DELETE",
                 success: function() {
                     $("#destroy-modal").modal("hide")

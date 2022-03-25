@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     @can('admin')
-        <li class="nav-item active">
+        <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>

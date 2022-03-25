@@ -38,4 +38,25 @@ class JurusanController extends Controller
         $data->description = $request->title;
         $data->save();
     }
+
+    public function edit($id)
+    {
+        $data = Jurusan::findOrFail($id);
+
+        return response()->json($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = Jurusan::findOrFail($id);
+        $data->title = $request->title_updt;
+        $data->slug = Str::slug($data->title, '-');
+        $data->description = $request->title_updt;
+        $data->save();
+    }
+
+    public function destroy(Jurusan $jurusan)
+    {
+        $jurusan->delete();
+    }
 }

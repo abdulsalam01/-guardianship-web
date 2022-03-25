@@ -1,6 +1,6 @@
 @extends('layout.backend.app',[
-    'title' => 'Manage Student',
-    'pageTitle' =>'Manage User',
+    'title' => 'Data Mahasiswa',
+    'pageTitle' =>'Data Mahasiswa',
 ])
 
 @push('css')
