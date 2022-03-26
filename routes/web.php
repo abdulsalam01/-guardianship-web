@@ -41,9 +41,6 @@ Route::group(['namespace' => 'User','middleware' => 'auth' ,'prefix' => 'user'],
 	Route::get('/',[UserController::class,'index'])->name('user');
 });
 
-Route::group(['namespace' => 'Dosen','middleware' => 'auth' ,'prefix' => 'dosen'],function(){
-});
-
 
 Route::group(['namespace' => 'Auth','middleware' => 'guest'],function(){
 	Route::view('/login','auth.login')->name('login');

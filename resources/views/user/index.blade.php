@@ -1,12 +1,11 @@
 @extends('layout.backend.app',[
 	'title' => 'Welcome',
-	'pageTitle' => 'Dashboard',
+	'pageTitle' => '',
 ])
 @section('content')
 <div class="jumbotron">
-  <h1 class="display-4">Hello, {{ Auth::user()->name }}</h1>
-  <p class="lead">Ini adalah halaman simple dashboard.</p>
+  <h1 class="display-5">Selamat Datang, {{ Auth::user()->name }}</h1>
   <hr class="my-4">
-  <p>Anda login sebagai {{ Auth::user()->roles }}.</p>
+  <p>Anda login sebagai {{ Auth::user()->roles == 'student' ? 'Mahasiswa' : 'Dosen' }}</p>
 </div>
 @endsection
