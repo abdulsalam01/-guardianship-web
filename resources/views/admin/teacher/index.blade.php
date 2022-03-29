@@ -65,7 +65,8 @@
             <select name="roles" id="r" class="form-control">
                 <option disabled="">- PILIH ROLE -</option>
                 <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="teacher">Dosen</option>
+                <option value="student">Mahasiswa</option>
             </select>
         </div>
       </div>
@@ -105,7 +106,8 @@
             <select name="roles" id="role" class="form-control">
                 <option disabled="">- PILIH ROLE -</option>
                 <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="teacher">Dosen</option>
+                <option value="student">Mahasiswa</option>
             </select>
         </div>
       </div>
