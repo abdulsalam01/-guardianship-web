@@ -60,8 +60,8 @@
     @endcan
 
     @can('admin')
-        <li class="nav-item">
-            <a class="nav-link" href="#">
+        <li class="nav-item {{ Request::is('admin/perwalian') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('perwalian.index') }}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Perwalian</span></a>
         </li>

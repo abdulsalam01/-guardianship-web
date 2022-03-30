@@ -16,6 +16,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-modal">
           Tambah Data
         </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-modal">
+            Import Data
+        </button>
     </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,6 +38,32 @@
             </div>
         </div>
 </div>
+
+<!-- Import Modal -->
+<div class="modal fade" id="import-modal" tabindex="-1" role="dialog" aria-labelledby="import-modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="destroy-modalLabel">Import Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="importForm">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-primary btn-import">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Import Modal -->
 
 <!-- Modal Create -->
 <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="create-modalLabel" aria-hidden="true">
