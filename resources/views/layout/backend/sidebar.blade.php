@@ -21,26 +21,23 @@
     @endcan
 
     @can('user')
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-        {{-- @elseCan('admin')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('user') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>User Dashboard</span></a>
-    </li> --}}
+        @if (Auth::user()->roles == 'student')
+            <li class="nav-item {{ Request::is('mahasiswa') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('mahasiswa') }}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
+            </li>
+        @else
+            <li class="nav-item {{ Request::is('dosen') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dosen') }}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
+            </li>
+        @endif
     @endCan
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    {{-- <div class="sidebar-heading">
-        Interface
-    </div> --}}
 
     @can('admin')
         <li class="nav-item">
@@ -68,15 +65,30 @@
     @endcan
 
     @can('user')
-        <li class="nav-item">
-            <a class="nav-link" href="{{ Auth::user()->roles == 'student' ? '#' : '#' }}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Perwalian</span></a>
-        </li>
+        @if (Auth::user()->roles == 'student')
+            <li class="nav-item {{ Request::is('mahasiswa/perwalian') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('perwalian-mahasiswa') }}">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Perwalian</span></a>
+            </li>
+            <li class="nav-item {{ Request::is('mahasiswa/akun') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('akun-mahasiswa') }}">
+                    <i class="fas fa-fw fa-user-cog"></i>
+                    <span>Pengaturan Akun</span></a>
+            </li>
+        @else
+            <li class="nav-item {{ Request::is('dosen/perwalian-dosen') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('perwalian-dosen.index') }}">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Perwalian</span></a>
+            </li>
+            <li class="nav-item {{ Request::is('dosen/akun') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('profile-dosen') }}">
+                    <i class="fas fa-fw fa-user-cog"></i>
+                    <span>Pengaturan Akun</span></a>
+            </li>
+        @endif
     @endcan
-
-    <!-- Divider -->
-    {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline mt-5">

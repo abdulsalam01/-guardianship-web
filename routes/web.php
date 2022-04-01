@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Route;
 //Namespace Auth
 use App\Http\Controllers\Auth\LoginController;
 
-//Namespace Admin
 use App\Http\Controllers\Admin\AdminController;
-
-//Namespace User
-use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Dosen\DosenController;
+use App\Http\Controllers\Dosen\ProfileController as DosenProfileController;
+use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Mahasiswa\PerwalianController;
+use App\Http\Controllers\Mahasiswa\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +38,27 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth','prefix' => 'admin']
 
 });
 
-Route::group(['namespace' => 'User','middleware' => 'auth' ,'prefix' => 'user'],function(){
-	Route::get('/',[UserController::class,'index'])->name('user');
+Route::group(['namespace' => 'Mahasiswa','middleware' => 'auth' ,'prefix' => 'mahasiswa'],function(){
+	Route::get('/',[MahasiswaController::class,'index'])->name('mahasiswa');
+
+    //perwalian
+    Route::get('/perwalian',[PerwalianController::class,'index'])->name('perwalian-mahasiswa');
+
+    //profile
+    Route::get('/akun',[ProfileController::class,'index'])->name('akun-mahasiswa');
+	Route::patch('/akun/update/{user}',[ProfileController::class,'update'])->name('akun-mahasiswa.update');
+
+});
+
+Route::group(['namespace' => 'Dosen','middleware' => 'auth' ,'prefix' => 'dosen'],function(){
+	Route::get('/',[DosenController::class,'index'])->name('dosen');
+
+    //perwalian
+    Route::resource('/perwalian-dosen', '\App\Http\Controllers\Dosen\PerwalianController');
+
+    //profile
+    Route::get('/akun',[DosenProfileController::class,'index'])->name('akun-dosen');
+	Route::patch('/akun/update/{user}',[DosenProfileController::class,'update'])->name('akun-dosen.update');
 });
 
 
