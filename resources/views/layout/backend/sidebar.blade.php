@@ -67,10 +67,19 @@
     @can('user')
         @if (Auth::user()->roles == 'student')
             <li class="nav-item {{ Request::is('mahasiswa/perwalian') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('perwalian-mahasiswa') }}">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Perwalian</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Perwalian</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('perwalian-mahasiswa') }}">Input Perwalian</a>
+                        <a class="collapse-item" href="{{ route('perwalian-mahasiswa.list') }}">Hasil Perwalian</a>
+                    </div>
+                </div>
             </li>
+
             <li class="nav-item {{ Request::is('mahasiswa/akun') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('akun-mahasiswa') }}">
                     <i class="fas fa-fw fa-user-cog"></i>

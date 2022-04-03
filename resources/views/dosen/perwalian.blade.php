@@ -322,7 +322,7 @@
                 url: "/dosen/perwalian-dosen/" + id,
                 method: "PATCH",
                 data: {'status': 'approved'},
-                success: function(e) {
+                success: function() {
                     $('.data-table').DataTable().ajax.reload();
                     flash("success", "Data berhasil di-approve")
                 },

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\ProfileController as DosenProfileController;
+use App\Http\Controllers\Dosen\PerwalianController as DosenWaliController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\PerwalianController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
@@ -41,7 +42,10 @@ Route::group(['namespace' => 'Mahasiswa','middleware' => 'auth' ,'prefix' => 'ma
 	Route::get('/',[MahasiswaController::class,'index'])->name('mahasiswa');
 
     //perwalian
-    Route::get('/perwalian',[PerwalianController::class,'index'])->name('perwalian-mahasiswa');
+    Route::get('/perwalian',[PerwalianController::class,'index'])->name('perwalian-mahasiswa');	
+	Route::post('/perwalian',[PerwalianController::class,'index']);
+	
+    Route::get('/perwalian/list',[PerwalianController::class,'list'])->name('perwalian-mahasiswa.list');
 
     //profile
     Route::get('/akun',[ProfileController::class,'index'])->name('akun-mahasiswa');
