@@ -35,7 +35,7 @@ class JurusanController extends Controller
         $data = new Jurusan();
         $data->title = $request->title;
         $data->slug = Str::slug($data->title, '-');
-        $data->description = $request->title;
+        $data->description = $request->description;
         $data->save();
     }
 
@@ -51,7 +51,7 @@ class JurusanController extends Controller
         $data = Jurusan::findOrFail($id);
         $data->title = $request->title_updt;
         $data->slug = Str::slug($data->title, '-');
-        $data->description = $request->title_updt;
+        $data->description = $request->description;
         $data->save();
     }
 

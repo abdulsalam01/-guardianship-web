@@ -25,6 +25,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Jurusan</th>
+                            <th>Deskripsi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -51,6 +52,10 @@
                         <div class="form-group">
                             <label for="n">Nama Jurusan</label>
                             <input type="" required="" id="title" name="title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="d">Deskripsi</label>
+                            <input type="" required="" id="deskripsi" name="description" class="form-control">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -81,6 +86,10 @@
                             <input type="hidden" required="" id="id" name="id" class="form-control">
                             <input type="" required="" id="title_updt" name="title_updt" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="d">Deskripsi</label>
+                            <input type="" required="" id="deskripsiupd" name="description" class="form-control">
+                        </div>                        
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -135,6 +144,10 @@
                         name: 'title'
                     },
                     {
+                        data: 'description',
+                        name: 'description'
+                    },                    
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,
@@ -148,6 +161,7 @@
         // Reset Form
         function resetForm() {
             $("[title='title']").val("")
+            $("#d").val("")            
         }
         //
 
@@ -184,6 +198,7 @@
                     $("#edit-modal").modal("show")
                     $("#id").val(response.id)
                     $("#title_updt").val(response.title)
+                    $("#deskripsiupd").val(response.description)
                 }
             })
         });
