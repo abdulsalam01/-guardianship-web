@@ -35,7 +35,6 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth','prefix' => 'admin']
 	Route::resource('/teacher','TeacherController')->middleware(['can:admin']);
     Route::resource('/jurusan','JurusanController')->middleware(['can:admin']);
     Route::resource('/perwalian','PerwalianController')->middleware(['can:admin']);
-
 });
 
 Route::group(['namespace' => 'Mahasiswa','middleware' => 'auth' ,'prefix' => 'mahasiswa'],function(){

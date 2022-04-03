@@ -43,9 +43,12 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function teacher(): BelongsTo
+    public function teacher()
     {
-        return $this->belongsTo(User::class, 'teacher_id', 'id');
+        return $this->belongsTo(User::class, 'teacher_id', 'id')->withDefault([
+            'id' => -1,
+            'name' => '-'
+        ]);
     }
 
     /**
@@ -56,5 +59,18 @@ class User extends Authenticatable
     public function students(): HasMany
     {
         return $this->hasMany(User::class, 'id', 'teacher_id');
+    }
+
+    /**
+     * Get the major that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function major()
+    {
+        return $this->belongsTo(Jurusan::class, 'major_id', 'id')->withDefault([
+            'id' => -1,
+            'title' => '-'
+        ]);
     }
 }

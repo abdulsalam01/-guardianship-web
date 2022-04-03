@@ -28,6 +28,8 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Jurusan</th>
+                            <th>Dosen Wali</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
@@ -90,10 +92,28 @@
             <input type="password" required="" id="p" name="password" class="form-control">
         </div>
         <div class="form-group">
+            <label for="j">Jurusan</label>
+            <select name="major_id" id="j" class="form-control">
+                <option disabled="">- PILIH JURUSAN -</option>
+                @foreach ($jurusan as $data)
+                  <option value="{{ $data->id }}">{{ $data->title }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="j">Dosen Wali</label>
+            <select name="teacher_id" id="d" class="form-control">
+                <option disabled="">- PILIH DOSEN -</option>
+                @foreach ($teacher as $data)
+                  <option value="{{ $data->id }}">{{ $data->name }} - {{ $data->email }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="r">Role</label>
             <select name="roles" id="r" class="form-control">
                 <option disabled="">- PILIH ROLE -</option>
-                <option value="admin">Admin</option>
+                <!-- <option value="admin">Admin</option> -->
                 <option value="teacher">Dosen</option>
                 <option value="student">Mahasiswa</option>
             </select>
@@ -131,10 +151,28 @@
             <input type="" required="" id="email" name="email" class="form-control">
         </div>
         <div class="form-group">
+            <label for="j">Jurusan</label>
+            <select name="major_id" id="j" class="form-control">
+                <option disabled="">- PILIH JURUSAN -</option>
+                @foreach ($jurusan as $data)
+                  <option value="{{ $data->id }}">{{ $data->title }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="d">Dosen Wali</label>
+            <select name="teacher_id" id="d" class="form-control">
+                <option disabled="">- PILIH DOSEN -</option>
+                @foreach ($teacher as $data)
+                  <option value="{{ $data->id }}">{{ $data->name }} - {{ $data->email }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="role">Role</label>
             <select name="roles" id="role" class="form-control">
                 <option disabled="">- PILIH ROLE -</option>
-                <option value="admin">Admin</option>
+                <!-- <option value="admin">Admin</option> -->
                 <option value="teacher">Dosen</option>
                 <option value="student">Mahasiswa</option>
             </select>
@@ -188,6 +226,8 @@
             {data: 'DT_RowIndex' , name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
+            {data: 'major.title', name: 'major_title'},
+            {data: 'teacher.name', name: 'teacher_name'},
             {data: 'roles', name: 'role'},
             {data: 'action', name: 'action', orderable: false, searchable: true},
         ]
@@ -235,6 +275,8 @@
                 $("#name").val(response.name)
                 $("#email").val(response.email)
                 $("#role").val(response.roles)
+                $("#j").val(response.major_id)
+                $("#d").val(response.teacher_id)
             }
         })
     });
