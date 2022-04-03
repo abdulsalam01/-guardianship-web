@@ -83,7 +83,7 @@
                     <span>Perwalian</span></a>
             </li>
             <li class="nav-item {{ Request::is('dosen/akun') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile-dosen') }}">
+                <a class="nav-link" href="{{ route('akun-dosen') }}">
                     <i class="fas fa-fw fa-user-cog"></i>
                     <span>Pengaturan Akun</span></a>
             </li>

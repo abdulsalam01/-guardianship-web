@@ -25,10 +25,16 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Mahasiswa</th>
+                            <th>Jurusan</th>
+                            <th>Dosen Wali</th>
+                            <th>Catatan</th>
                             <th>Semester</th>
                             <th>Tahun</th>
                             <th>Status</th>
                             <th>Aksi</th>
+                            @can('special')
+                                <th>Approval</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -53,35 +59,48 @@
                     <form id="createForm">
                         <div class="form-group">
                             <label for="n">Nama Mahasiswa</label>
-                            <input type="" required="" id="nama_mahasiswa" name="nama_mahasiswa" class="form-control">
+                            <select class="form-control" name="user_id" id="user_idC">
+                                @foreach ($mahasiswa as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="#">Jurusan</label>
                             <select class="form-control" name="id_jurusan" id="id_jurusan">
                                 @foreach ($jurusan as $item)
                                     <option value="{{ $item ->id }}">{{ $item ->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="n">Semester</label>
-                            <input type="" required="" id="semester" name="semester" class="form-control">
+                            <select class="form-control" name="semester" id="semesterC">
+                                <option value="1">Ganjil</option>
+                                <option value="2">Genap</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="n">Tahun</label>
-                            <input type="" required="" id="tahun" name="tahun" class="form-control">
+                            <select class="form-control" name="year" id="yearC">
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                            </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="#">Dosen</label>
                             <select class="form-control" name="id_dosen" id="id_dosen">
                                 @foreach ($dosen as $item)
                                     <option value="{{ $item ->id }}">{{ $item ->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="#">Catatan</label>
-                            <textarea class="form-control" name="subject" id="subject" rows="4"></textarea>
+                            <textarea class="form-control" name="subject" id="subjectC" rows="4"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -110,32 +129,45 @@
                         <div class="form-group">
                             <label for="name">Nama Mahasiwa</label>
                             <input type="hidden" required="" id="id" name="id" class="form-control">
-                            <input type="" required="" id="nama_mahasiswa" name="nama_mahasiswa" class="form-control">
+                            <select class="form-control" name="user_id" id="user_id">
+                                @foreach ($mahasiswa as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="#">Jurusan</label>
                             <select class="form-control" name="id_jurusan" id="id_jurusan">
                                 @foreach ($jurusan as $item)
                                     <option value="{{ $item ->id }}">{{ $item ->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="n">Semester</label>
-                            <input type="" required="" id="semester" name="semester" class="form-control">
+                            <select class="form-control" name="semester" id="semester">
+                                <option value="1">Ganjil</option>
+                                <option value="2">Genap</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="n">Tahun</label>
-                            <input type="" required="" id="tahun" name="tahun" class="form-control">
+                            <select class="form-control" name="year" id="year">
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                            </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="#">Dosen</label>
                             <select class="form-control" name="id_dosen" id="id_dosen">
                                 @foreach ($dosen as $item)
                                     <option value="{{ $item ->id }}">{{ $item ->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="#">Catatan</label>
                             <textarea class="form-control" name="subject" id="subject" rows="4"></textarea>
@@ -187,11 +219,15 @@
                 ajax: "{{ route('perwalian.index') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'id'},
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'users.name', name: 'user_id'},
+                    {data: 'users.major.title', name: 'major_title'},
+                    {data: 'users.teacher.name', name: 'teacher'},
+                    {data: 'subject', name: 'subject'},
                     {data: 'semester', name: 'semester'},
                     {data: 'year', name: 'year'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: true},
+                    {data: 'approval', name: 'approval', orderable: false, searchable: true},
                 ]
             });
         });
@@ -199,7 +235,10 @@
 
         // Reset Form
         function resetForm() {
-            $("[title='title']").val("")
+            $("#user_id").val("")
+            $("#semester").val("")
+            $("#year").val("")
+            $("#subject").val("")
         }
         //
 
@@ -207,12 +246,13 @@
 
         $("#createForm").on("submit", function(e) {
             e.preventDefault()
-
+            console.log($(this).serialize())
             $.ajax({
-                url: "/admin/jurusan",
+                url: "/admin/perwalian",
                 method: "POST",
                 data: $(this).serialize(),
-                success: function() {
+                success: function(e) {
+                    console.log(e)
                     $("#create-modal").modal("hide")
                     $('.data-table').DataTable().ajax.reload();
                     flash("success", "Data berhasil ditambah")
@@ -230,12 +270,15 @@
         $('body').on("click", ".btn-edit", function() {
             var id = $(this).attr("id")
             $.ajax({
-                url: "/admin/jurusan/" + id + "/edit",
+                url: "/admin/perwalian/" + id + "/edit",
                 method: "GET",
                 success: function(response) {
                     $("#edit-modal").modal("show")
                     $("#id").val(response.id)
-                    $("#title_updt").val(response.title)
+                    $("#user_id").val(response.user_id)
+                    $("#semester").val(response.semester)
+                    $("#year").val(response.year)
+                    $("#subject").val(response.subject)
                 }
             })
         });
@@ -245,7 +288,7 @@
             var id = $("#id").val()
 
             $.ajax({
-                url: "/admin/jurusan/" + id,
+                url: "/admin/perwalian/" + id,
                 method: "PATCH",
                 data: $(this).serialize(),
                 success: function() {
@@ -258,8 +301,8 @@
                 }
             })
         })
-        //Edit & Update
 
+        //Edit & Update
         $('body').on("click", ".btn-delete", function() {
             var id = $(this).attr("id")
             $(".btn-destroy").attr("id", id)
@@ -270,7 +313,7 @@
             var id = $(this).attr("id")
 
             $.ajax({
-                url: "/admin/jurusan/" + id,
+                url: "/admin/perwalian/" + id,
                 method: "DELETE",
                 success: function() {
                     $("#destroy-modal").modal("hide")
@@ -279,6 +322,41 @@
                 }
             });
         })
+
+        // approved
+        $('body').on("click", ".btn-approve", function() {
+            var id = $(this).attr("id")
+            $.ajax({
+                url: "/admin/perwalian/" + id,
+                method: "PATCH",
+                data: {'status': 'approved'},
+                success: function() {
+                    $('.data-table').DataTable().ajax.reload();
+                    flash("success", "Data berhasil di-approve")
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            })            
+        });
+
+        // rejected
+        $('body').on("click", ".btn-reject", function() {
+            var id = $(this).attr("id")
+            $.ajax({
+                url: "/admin/perwalian/" + id,
+                method: "PATCH",
+                data: {'status': 'rejected'},
+                success: function() {
+                    $('.data-table').DataTable().ajax.reload();
+                    flash("success", "Data berhasil di-reject")
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            })            
+        });
+
 
         function flash(type, message) {
             $(".notify").html(`<div class="alert alert-` + type + ` alert-dismissible fade show" role="alert">
