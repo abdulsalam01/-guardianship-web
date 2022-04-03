@@ -63,7 +63,7 @@ class PerwalianController extends Controller
 
     public function update(Request $request, Perwalian $perwalian)
     {
-        $perwalian->update($request->all());
+        $perwalian->where('id', $request->id)->update(['status' => $request->status]);
     }
 
     public function destroy(Perwalian $perwalian)

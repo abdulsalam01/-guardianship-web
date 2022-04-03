@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Dosen','middleware' => 'auth' ,'prefix' => 'dosen'
 
     //perwalian
     Route::resource('/perwalian-dosen', '\App\Http\Controllers\Dosen\PerwalianController');
+	Route::patch('/perwalian-approval/{id}', [\App\Http\Controllers\Dosen\PerwalianController::class, 'update']);
 
     //profile
     Route::get('/akun',[DosenProfileController::class,'index'])->name('akun-dosen');

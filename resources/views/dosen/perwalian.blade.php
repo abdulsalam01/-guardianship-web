@@ -319,7 +319,7 @@
         $('body').on("click", ".btn-approve", function() {
             var id = $(this).attr("id")
             $.ajax({
-                url: "/dosen/perwalian-dosen/" + id,
+                url: "/dosen/perwalian-approval/" + id,
                 method: "PATCH",
                 data: {'status': 'approved'},
                 success: function() {
@@ -336,7 +336,7 @@
         $('body').on("click", ".btn-reject", function() {
             var id = $(this).attr("id")
             $.ajax({
-                url: "/dosen/perwalian-dosen/" + id,
+                url: "/dosen/perwalian-approval/" + id,
                 method: "PATCH",
                 data: {'status': 'rejected'},
                 success: function() {
