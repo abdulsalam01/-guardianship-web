@@ -43,7 +43,7 @@ Route::group(['namespace' => 'Mahasiswa','middleware' => 'auth' ,'prefix' => 'ma
 
     //perwalian
     Route::get('/perwalian',[PerwalianController::class,'index'])->name('perwalian-mahasiswa');	
-	Route::post('/perwalian',[PerwalianController::class,'index']);
+	Route::post('/perwalian-create',[PerwalianController::class,'store']);
 	
     Route::get('/perwalian/list',[PerwalianController::class,'list'])->name('perwalian-mahasiswa.list');
 

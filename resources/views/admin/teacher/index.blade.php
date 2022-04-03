@@ -16,9 +16,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-modal">
           Tambah Data
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-modal">
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-modal">
             Import Data
-        </button>
+        </button> -->
     </div>
         <div class="card-body">
             <div class="table-responsive">

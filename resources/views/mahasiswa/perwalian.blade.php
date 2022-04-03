@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="#">Catatan</label>
-                    <textarea class="form-control" name="subject" id="subject" rows="4"></textarea>
+                    <textarea class="form-control" name="subject" id="subject" rows="4" required=""></textarea>
                 </div>
         </div>
         <div class="modal-footer">
@@ -100,13 +100,11 @@
 
         $("#createForm").on("submit", function(e) {
             e.preventDefault()
-            console.log($(this).serialize())
             $.ajax({
-                url: "/mahasiswa/perwalian",
+                url: "/mahasiswa/perwalian-create",
                 method: "POST",
                 data: $(this).serialize(),
                 success: function(e) {
-                    console.log(e)
                     $("#create-modal").modal("hide")
                     $('.data-table').DataTable().ajax.reload();
                     flash("success", "Data berhasil ditambah")

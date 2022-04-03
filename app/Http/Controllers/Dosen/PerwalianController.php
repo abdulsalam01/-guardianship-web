@@ -26,7 +26,7 @@ class PerwalianController extends Controller
                 ->addIndexColumn()
                 ->addColumn('approval', function ($row) {
                     $btn = '<div class="row"><a href="javascript:void(0)" id="' . $row->id . '" class="btn btn-success btn-sm ml-2 btn-approve">Approved</a>';
-                    $btn .= '<a href="javascript:void(0)" id="' . $row->id . '" class="btn btn-warning btn-sm ml-2 btn-reject">Reject</a></div>';
+                    $btn .= '<a href="javascript:void(0)" id="' . $row->id . '" class="btn btn-danger btn-sm ml-2 btn-reject">Reject</a></div>';
 
                     return $btn;
                 })                
