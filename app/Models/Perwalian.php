@@ -13,7 +13,7 @@ class Perwalian extends Model
     protected $table = "guardians";
 
     protected $fillable = [
-        'user_id', 'subject', 'semester', 'year', 'status'
+        'user_id', 'subject', 'semester', 'year', 'status', 'semester_num'
     ];
 
     /**
@@ -29,8 +29,8 @@ class Perwalian extends Model
         ]);
     }
 
-    public function semester() {
-        return Attribute::make(
+    public function semester(): Attribute {
+        return new Attribute(
             get: fn ($value, $attributes) => $value === 1 ? 'Ganjil' : 'Genap',
             set: fn ($value) => $value,
         );

@@ -29,6 +29,7 @@
                 </div>                
                 <div class="form-group">
                     <label for="n">Semester</label>
+                    <input type="number" required="" id="semester_num" name="semester_num" class="form-control"/>
                     <select class="form-control" name="semester" id="semester">
                         <option value="1">Ganjil</option>
                         <option value="2">Genap</option>
@@ -91,6 +92,7 @@
         function resetForm() {
             $("#user_id").val("")
             $("#semester").val("")
+            $("#semester_num").val("")
             $("#year").val("")
             $("#subject").val("")
         }

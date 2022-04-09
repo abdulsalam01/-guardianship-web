@@ -14,6 +14,7 @@ use App\Models\Role;
 
 class TeacherController extends Controller
 {
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

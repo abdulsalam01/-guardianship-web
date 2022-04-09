@@ -25,6 +25,7 @@
                             <th>Dosen Wali</th>
                             <th>Catatan</th>
                             <th>Semester</th>
+                            <th>Periode</th>
                             <th>Tahun</th>
                             <th>Status</th>
                         </tr>
@@ -55,6 +56,7 @@
                     {data: 'users.major.title', name: 'major_title'},
                     {data: 'users.teacher.name', name: 'teacher'},
                     {data: 'subject', name: 'subject'},
+                    {data: 'semester_num', name: 'semester_num'},
                     {data: 'semester', name: 'semester'},
                     {data: 'year', name: 'year'},
                     {data: 'status', name: 'status'}

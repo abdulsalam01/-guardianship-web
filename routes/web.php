@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PerwalianController as AdminPerwalianController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\ProfileController as DosenProfileController;
 use App\Http\Controllers\Dosen\PerwalianController as DosenWaliController;
