@@ -17,6 +17,7 @@ class CreateTableGuardian extends Migration
             $table->id();
             $table->string('subject');
             $table->integer('semester')->default(1);
+            $table->integer('semester_num')->default(1);
             $table->year('year');
             $table->enum('status', ['open', 'close', 'approved', 'rejected'])->default('open');
             $table->unsignedBigInteger('user_id')->nullable();

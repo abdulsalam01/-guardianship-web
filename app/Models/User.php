@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'roles', 'major_id', 'teacher_id'
+        'name', 'email', 'password', 'roles', 'major_id', 'teacher_id', 'nim', 'nidn'
     ];
 
     /**
@@ -47,7 +47,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'teacher_id', 'id')->withDefault([
             'id' => -1,
-            'name' => '-'
+            'name' => '-',
+            'nidn' => '-'
         ]);
     }
 

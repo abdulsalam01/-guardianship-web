@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>NIM</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Jurusan</th>
@@ -79,6 +80,10 @@
       </div>
       <div class="modal-body">
         <form id="createForm">
+        <div class="form-group">
+            <label for="nim">NIM</label>
+            <input type="number" required="" id="nim" name="nim" class="form-control">
+        </div>          
         <div class="form-group">
             <label for="n">Name</label>
             <input type="" required="" id="n" name="name" class="form-control">
@@ -141,6 +146,10 @@
       </div>
       <div class="modal-body">
         <form id="editForm">
+        <div class="form-group">
+            <label for="nim">NIM</label>
+            <input type="number" required="" id="nim" name="nim" class="form-control">
+        </div>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="hidden" required="" id="id" name="id" class="form-control">
@@ -224,6 +233,7 @@
         ajax: "{{ route('user.index') }}",
         columns: [
             {data: 'DT_RowIndex' , name: 'id'},
+            {data: 'nim', name: 'nim'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'major.title', name: 'major_title'},
@@ -237,6 +247,7 @@
 
     // Reset Form
         function resetForm(){
+            $("[name='nim']").val("")
             $("[name='name']").val("")
             $("[name='email']").val("")
             $("[name='password']").val("")
@@ -272,6 +283,7 @@
             success:function(response){
                 $("#edit-modal").modal("show")
                 $("#id").val(response.id)
+                $("#nim").val(response.nim)
                 $("#name").val(response.name)
                 $("#email").val(response.email)
                 $("#role").val(response.roles)

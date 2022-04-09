@@ -59,13 +59,13 @@ class TeacherController extends Controller
     //     return response()->json($user);
     // }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->update($request->all());
+        User::find($id)->update($request->all());
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        User::find($id)->delete();
     }
 }

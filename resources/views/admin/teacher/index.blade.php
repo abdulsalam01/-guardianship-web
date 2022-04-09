@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>NIDN</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
@@ -44,10 +45,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="destroy-modalLabel">Import Data</h5>
+          <!-- <h5 class="modal-title" id="destroy-modalLabel">Import Data</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> -->
         </div>
         <div class="modal-body">
             <form id="importForm">
@@ -77,6 +78,10 @@
       </div>
       <div class="modal-body">
         <form id="createForm">
+        <div class="form-group">
+            <label for="nidn">NIDN</label>
+            <input type="number" required="" id="nidnC" name="nidn" class="form-control">
+        </div>
         <div class="form-group">
             <label for="n">Name</label>
             <input type="" required="" id="n" name="name" class="form-control">
@@ -121,6 +126,10 @@
       </div>
       <div class="modal-body">
         <form id="editForm">
+        <div class="form-group">
+            <label for="nidn">NIDN</label>
+            <input type="" required="" id="nidn" name="nidn" class="form-control">
+        </div>          
         <div class="form-group">
             <label for="name">Name</label>
             <input type="hidden" required="" id="id" name="id" class="form-control">
@@ -186,6 +195,7 @@
         ajax: "{{ route('teacher.index') }}",
         columns: [
             {data: 'DT_RowIndex' , name: 'id'},
+            {data: 'nidn', name: 'nidn'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'roles', name: 'role'},
@@ -197,6 +207,7 @@
 
     // Reset Form
         function resetForm(){
+            $("[name='nidn']").val("")
             $("[name='name']").val("")
             $("[name='email']").val("")
             $("[name='password']").val("")
@@ -232,6 +243,7 @@
             success:function(response){
                 $("#edit-modal").modal("show")
                 $("#id").val(response.id)
+                $("#nidn").val(response.nidn)
                 $("#name").val(response.name)
                 $("#email").val(response.email)
                 $("#role").val(response.roles)
@@ -242,7 +254,6 @@
     $("#editForm").on("submit",function(e){
         e.preventDefault()
         var id = $("#id").val()
-
         $.ajax({
             url: "/admin/teacher/"+id,
             method: "PATCH",
@@ -268,10 +279,15 @@
         $.ajax({
             url: "/admin/teacher/"+id,
             method: "DELETE",
-            success:function(){
+            success:function(e){
                 $("#destroy-modal").modal("hide")
                 $('.data-table').DataTable().ajax.reload();
                 flash('success','Data berhasil dihapus')
+
+                console.log(e);
+            },
+            error: function(err) {
+              console.log(err);
             }
         });
     })
