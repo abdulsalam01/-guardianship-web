@@ -16,9 +16,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-modal">
           Tambah Data
         </button>
-        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-modal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-modal">
             Import Data
-        </button> -->
+        </button>
     </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -50,17 +50,19 @@
             <span aria-hidden="true">&times;</span>
           </button> -->
         </div>
-        <div class="modal-body">
-            <form id="importForm">
-                <div class="form-group">
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                  </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary btn-import">Simpan</button>
-        </div>
+        <form id="importForm" method="POST" enctype="multipart/form-data" action="{{ url('admin/teacher/import') }}">
+          @csrf
+          
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary btn-import">Simpan</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

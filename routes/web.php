@@ -37,6 +37,10 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth','prefix' => 'admin']
 	Route::resource('/teacher','TeacherController')->middleware(['can:admin']);
     Route::resource('/jurusan','JurusanController')->middleware(['can:admin']);
     Route::resource('/perwalian','PerwalianController')->middleware(['can:admin']);
+
+	// spesific import-files
+	Route::post('/user/import','UserController@import')->middleware(['can:admin']);
+	Route::post('/teacher/import','TeacherController@import')->middleware(['can:admin']);
 });
 
 Route::group(['namespace' => 'Mahasiswa','middleware' => 'auth' ,'prefix' => 'mahasiswa'],function(){

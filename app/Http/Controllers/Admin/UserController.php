@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 
 use DataTables;
 use Hash;
+use Excel;
 
 use App\Models\User;
 use App\Models\Role;
@@ -70,5 +72,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+    }
+
+    public function import(Request $request) {
+        $data = Excel::import(new UsersImport, request()->file('file'));
+        return redirect('/admin/user');
     }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\TeacherImport;
 use Illuminate\Http\Request;
 
 use DataTables;
 use Hash;
+use Excel;
 
 use App\Models\User;
 use App\Models\Role;
@@ -69,4 +71,9 @@ class TeacherController extends Controller
     {
         User::find($id)->delete();
     }
+
+    public function import(Request $request) {
+        $data = Excel::import(new TeacherImport, request()->file('file'));
+        return redirect('/admin/teacher');
+    }    
 }
